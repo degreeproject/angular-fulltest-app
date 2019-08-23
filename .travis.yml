@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+- stable
+cache:
+  directories:
+  - node_modules
+before_script:
+- npm install -g @angular/cli
+script:
+- npm run lint
+deploy:
+  provider: heroku
+  app: angular-test-app
+  api_key:
+    secure: j3M5YMyt19HXQDj/VNJZ4h46MIpde5/WjyEVI0xyXEgrgMFAtR5yJ0PC63F9RuUJYvIgowLjwrDB8IVGQWPKes2s8tfighf/Oo4MnSik6U1bk8BZJasP5LfWhSWjo+6bPeMtiMu6q9oZriL59+U0nT66pW3gYcZqiUCBDbUMLOs5wq7DVvWjVKUtHDNRxLsr5okNI6p6v3lry3SvIuvBa8N6bua5/Z1olu8ufMImMJhww83jUuCQfI1HijmYjl3mjCVaCJrqAwn6d6ZGkfEYMfBpM2RYkgS+Lz4Xee2XOHTOVlHdAh+vvgqNyJuyNgV1Nn6qPnZ4uic9HqV9SHCLrhiwacFMgWAWtt9yPU6WN8SzRYIhke5Rbm3A7hsHbH90zmVy/cA8QHrirE/JFSL64v4Myj6jb+SE+PWzYpuDtEOLwoYl0ygpTpvJa8imnz5LOzBXQbTMWJmClYBYiq4cH8f7d5lYtga2veflFxX7T0OP9DsvVSzD49ZfwXBlVwphEPBgRj5lcAZsKLQv0aG2ctuxDH7z9UlT5CFKoVgr4hTkcuz61aAHaaCaA3448HueheZ+S5wcCwiixCn+cIRyf9j7Cb6evq3pjUKwGPuUek3eGyYqq1FlYFCRcpZNCf/ky6XuQlZL0iH5Ol1Cf3/uM2TKO8nywULw30c8CeVoWR0=
+  on:
+    repo: degreeproject/angular-fulltest-app
+    branch: master
