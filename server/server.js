@@ -4,10 +4,13 @@ const config = require('./config');
 const path = require('path');
 
 const user = require('./router/api/user');
+const recipe = require('./router/api/recipe');
 
 const app = express();
 
 app.use('/api/user', user);
+app.use('/api/recipe', recipe);
+
 
 const port = process.env.PORT || 8080;
 
