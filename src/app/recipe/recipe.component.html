@@ -1,1 +1,11 @@
-<p>recipe works!</p>
+<h3 *ngIf=!isLoaded>Loading...</h3>
+  <div *ngIf=isLoaded>
+    <h1>{{ recipes[currentRecipe].name }}</h1>
+    <h3>{{ recipes[currentRecipe].description }}</h3>
+      <span>ingredients:</span>
+      <ul>
+          <li *ngFor="let ingredient of recipes[currentRecipe].ingredient">
+              {{ ingredient.name }}<span *ngIf=ingredient.amount>: {{ ingredient.amount }} </span><span *ngIf=ingredient.unit>{{ ingredient.unit }}</span>
+          </li>
+      </ul>
+  </div>

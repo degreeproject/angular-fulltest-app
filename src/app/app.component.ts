@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
 
   getUsers() {
     this.appService.getUsers().subscribe(users => (this.users = users));
-    console.log('Users hämtade');
   }
   logUsers() {
     console.log(this.users);

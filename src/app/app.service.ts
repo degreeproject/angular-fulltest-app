@@ -13,4 +13,8 @@ export class AppService {
   getUsers(): Observable<any[]> {
     return this.http.get<any[]>('api/user');
   }
+
+  getRecipes(): Observable<any[]> {
+    return this.http.get<any[]>('api/recipe');
+  }
 }

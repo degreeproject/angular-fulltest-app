@@ -1,7 +1,7 @@
 const mongodb = require('mongodb');
 const config = require('../config');
 
-class DBService {
+class UserService {
    /**
    * Loads the user collection from MongoDB
    */
@@ -27,4 +27,4 @@ class DBService {
 
 }
 
-module.exports = DBService;
+module.exports = UserService;

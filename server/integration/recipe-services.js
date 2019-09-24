@@ -1,7 +1,7 @@
 const mongodb = require('mongodb');
 const config = require('../config');
 
-class DBService {
+class RecipeService {
    /**
    * Loads the recipe collection from MongoDB
    */
@@ -17,7 +17,7 @@ class DBService {
       const recipeCollection = await this.loadRecipeCollection();
       const recipe = await recipeCollection.find().toArray()
       if (recipe.length === 0 || !recipe)
-        console.log("No recipes found in getUsers")
+        console.log("No recipes found in getRecipes")
       return recipe;
     } catch (err) {
       console.log(err)
@@ -27,4 +27,4 @@ class DBService {
 
 }
 
-module.exports = DBService;
+module.exports = RecipeService;
