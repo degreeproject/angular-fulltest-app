@@ -12,13 +12,15 @@ export class AppComponent implements OnInit {
   constructor(private appService: AppService) {}
 
   users: any = [];
+  recipes: any = [];
+  loggedIn = false;
 
 
   ngOnInit() {
     this.getUsers();
   }
 
-  getUsers() {
+  getUsers(): void {
     this.appService.getUsers().subscribe(users => (this.users = users));
   }
   logUsers() {
