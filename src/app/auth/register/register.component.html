@@ -1,1 +1,48 @@
-<p>register works!</p>
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+<div>
+  <mat-form-field hintLabel="Max 16 characters">
+    <input matInput formControlName="username" #input maxlength="16" placeholder="Enter username" required>
+    <mat-hint align="end">{{input.value?.length || 0}}/16</mat-hint>
+  </mat-form-field>
+</div>
+<div>
+  <mat-form-field hintLabel="Max 30 characters">
+    <input matInput formControlName="firstname" #input maxlength="30" placeholder="Enter first name" required>
+    <mat-hint align="end">{{input.value?.length || 0}}/30</mat-hint>
+  </mat-form-field>
+</div>
+<div>
+  <mat-form-field hintLabel="Max 30 characters">
+    <input matInput formControlName="lastname" #input maxlength="30" placeholder="Enter surname" required>
+    <mat-hint align="end">{{input.value?.length || 0}}/30</mat-hint>
+  </mat-form-field>
+</div>
+
+<div>
+  <mat-form-field>
+    <input matInput placeholder="Enter your email" formControlName="email" required>
+    <mat-error *ngIf="profileForm.get('email').invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+</div>
+<div>
+  <mat-form-field>
+    <input matInput formControlName="password" placeholder="Enter password" [type]="hide ? 'password' : 'text'" minlength="7" required>
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    <mat-error *ngIf="profileForm.get('password').invalid">{{getPWErrorMessage()}}</mat-error>
+  </mat-form-field>
+</div>
+<div>
+  <mat-form-field>
+    <input matInput formControlName="password2" placeholder="Enter password agian" [type]="hide ? 'password' : 'text'" required>
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+  <mat-error *ngIf="nomatch">Password does not match</mat-error>
+</div>
+<div>
+  <button mat-raised-button [disabled]="!profileForm.valid" color="primary" type="submit">Submit</button>
+</div>
+</form>

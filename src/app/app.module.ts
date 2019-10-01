@@ -1,10 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import {MatMenuModule} from '@angular/material/menu';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { CustomMaterialModule } from './material.module';
 
 
 import { AppComponent } from './app.component';
@@ -20,6 +18,7 @@ import { RecipeViewComponent } from './recipe-page/recipe-view/recipe-view.compo
 import { CommentComponent } from './recipe-page/comment/comment.component';
 import { CalendarPageComponent } from './calendar-page/calendar-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -38,12 +37,11 @@ import { HomePageComponent } from './home-page/home-page.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatCardModule,
-    MatMenuModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CustomMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

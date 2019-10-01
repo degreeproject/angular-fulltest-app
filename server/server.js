@@ -2,11 +2,14 @@
 const express = require('express');
 const config = require('./config');
 const path = require('path');
+const bodyParser = require('body-parser');
 
 const user = require('./router/api/user');
 const recipe = require('./router/api/recipe');
 
 const app = express();
+
+app.use(bodyParser.json());
 
 app.use('/api/user', user);
 app.use('/api/recipe', recipe);

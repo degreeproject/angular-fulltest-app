@@ -1,1 +1,20 @@
-<p>login works!</p>
+<mat-error *ngIf="failedLogin">User does not exist</mat-error>
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <div>
+    <mat-form-field hintLabel="Max 16 characters">
+      <input matInput formControlName="username" #input maxlength="16" placeholder="Enter username" required>
+      <mat-hint align="end">{{input.value?.length || 0}}/16</mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input matInput formControlName="password" placeholder="Enter password" [type]="hide ? 'password' : 'text'" required>
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <div>
+    <button mat-raised-button [disabled]="!profileForm.valid" color="primary" type="submit">Submit</button>
+  </div>
+</form>
