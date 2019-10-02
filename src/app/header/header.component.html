@@ -6,9 +6,11 @@
         <button mat-menu-item routerLink="/recipe" routerLinkActive="active">Recipe 2</button>
       </mat-menu>
     <button mat-button	routerLink="/calendar" routerLinkActive="active">Calendar</button>
-    <button mat-button [matMenuTriggerFor]="menu2" *ngIf=!loggedIn>Login</button>
-    <mat-menu #menu2="matMenu">
+    <button mat-button [matMenuTriggerFor]="menu2" *ngIf="!isLoggedIn()">User</button>
+      <mat-menu #menu2="matMenu">
         <button mat-menu-item routerLink="/login" routerLinkActive="active">Log in</button>
         <button mat-menu-item routerLink="/register" routerLinkActive="active">Register</button>
       </mat-menu>
+      <button mat-button *ngIf="isLoggedIn()" (click)="logout()">Logout</button>
+      <button mat-button (click)="checkState()">Check state</button>
   </mat-toolbar>
