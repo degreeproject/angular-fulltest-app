@@ -4,7 +4,7 @@ const config = require('../config');
 const DUPL_USER = 11000;
 
 class UserService {
-   /**
+  /**
    * Loads the user collection from MongoDB
    */
   static async loadUserCollection() {
@@ -19,9 +19,11 @@ class UserService {
       const usersCollection = await this.loadUserCollection();
       const users = await usersCollection.find().toArray()
       if (users.length === 0 || !users)
+        // eslint-disable-next-line no-console
         console.log("No users found in getUsers")
       return users;
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.log(err)
     }
   }
@@ -48,13 +50,15 @@ class UserService {
         }
       });
       if (!foundUser) {
+        // eslint-disable-next-line no-console
         console.log('Error in authenticateUser, no user found')
         throw new Error('No such user');
       }
       return (password === foundUser.password);
     } catch (err) {
-      if (err instanceof MyError)
+      if (err instanceof Error)
         throw err;
+      // eslint-disable-next-line no-console
       console.log('Error in authenticateUser: ', err);
       throw new Error('Database error');
     }

@@ -19,7 +19,14 @@ export class RecipeViewComponent implements OnInit {
   }
 
   getRecipes(): void {
-    this.recipeService.getRecipes().subscribe(recipes => (this.recipes = recipes, this.isLoaded = true));
+    this.recipeService.getRecipes().subscribe(recipes => {
+      this.recipes = recipes;
+      this.isLoaded = true;
+      console.log(recipes);
+    },
+    error => {
+      console.log(error);
+    }
+    );
   }
-
 }

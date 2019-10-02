@@ -20,6 +20,6 @@ export class AuthService {
 
   loginUser(user: any): Observable<any> {
     console.log(user);
-    return this.http.get<any>('api/user', {params: user});
+    return this.http.get<any>('api/auth', {params: user});
   }
 }

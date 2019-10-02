@@ -18,7 +18,8 @@ import { RecipeViewComponent } from './recipe-page/recipe-view/recipe-view.compo
 import { CommentComponent } from './recipe-page/comment/comment.component';
 import { CalendarPageComponent } from './calendar-page/calendar-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import { from } from 'rxjs';
+import { StoreModule } from '@ngrx/store';
+import { reducer } from './store/reducers/auth.reducers';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,10 @@ import { from } from 'rxjs';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    CustomMaterialModule
+    CustomMaterialModule,
+    StoreModule.forRoot({
+      userState: reducer
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
