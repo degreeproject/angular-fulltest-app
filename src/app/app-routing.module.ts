@@ -13,7 +13,7 @@ import { RecipeCollectionPageComponent } from './recipe-collection-page/recipe-c
 
 const appRoutes: Routes = [
   { path: 'home', component: HomePageComponent },
-  { path: 'recipe', component: RecipePageComponent },
+  { path: 'recipes/:id', component: RecipePageComponent },
   { path: 'recipes', component: RecipeCollectionPageComponent },
   { path: 'calendar', component: CalendarPageComponent, canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent },

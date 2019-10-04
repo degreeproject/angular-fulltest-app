@@ -12,7 +12,11 @@ export class RecipePageService {
   reqHeader = new HttpHeaders({'No-Auth': 'true'});
 
   getRecipes(): Observable<any[]> {
-    return this.http.get<any[]>('api/recipe'/* , {headers: this.reqHeader} */);
+    return this.http.get<any[]>('api/recipe' , {headers: this.reqHeader});
+  }
+
+  getRecipe(id: any): Observable<any[]> {
+    return this.http.get<any[]>('api/recipe/' + id  , {headers: this.reqHeader});
   }
 
   postRecipe(recipe: any): Observable<any> {

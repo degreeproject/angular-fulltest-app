@@ -25,6 +25,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { RecipeCollectionPageComponent } from './recipe-collection-page/recipe-collection-page.component';
 import { RecipeItemComponent } from './recipe-collection-page/recipe-item/recipe-item.component';
+import { AddRecipePageComponent } from './add-recipe-page/add-recipe-page.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { RecipeItemComponent } from './recipe-collection-page/recipe-item/recipe
     CalendarPageComponent,
     HomePageComponent,
     RecipeCollectionPageComponent,
-    RecipeItemComponent
+    RecipeItemComponent,
+    AddRecipePageComponent
   ],
   imports: [
     BrowserModule,

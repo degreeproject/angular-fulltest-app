@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
-import { recipeState } from 'src/app/models/recipeState.model';
 
 // Section 2
 export const ADD_RECIPE       = '[RECIPESTATE] add';

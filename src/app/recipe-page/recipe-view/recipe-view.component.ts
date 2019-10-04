@@ -19,7 +19,8 @@ export class RecipeViewComponent implements OnInit {
   }
 
   recipes: any = [];
-  currentRecipe = 0;
+  recipe: any = [];
+  currentRecipe;
   isLoaded = false;
 
   showState() {
@@ -27,16 +28,23 @@ export class RecipeViewComponent implements OnInit {
   }
 
   ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (this.recipes) {
+      this.recipe = this.recipes.find((ele) => {
+        return ele.id === id;
+      });
+    }
+
     if (typeof(this.recipes) === 'undefined') {
-      this.getRecipes();
+      this.getRecipe(id);
     } else {
       this.isLoaded = true;
     }
   }
 
-  getRecipes(): void {
-    this.recipeService.getRecipes().subscribe(recipes => {
-      this.recipes = recipes;
+  getRecipe(id: string): void {
+    this.recipeService.getRecipe(id).subscribe(recipes => {
+      this.recipe = recipes;
       this.isLoaded = true;
     },
     error => {

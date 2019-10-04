@@ -7,13 +7,15 @@ const config = require('../config');
  */
 const unauthorizedAccessPaths = [
   // Registring a user
-  {route: '/api/user', method: 'POST'},
+  {route: /^\/api\/user$/, method: 'POST'},
+  {route: /^\/api\/user\/.*$/, method: 'GET'},
   // Trying to authenticate
-  {route: '/api/auth', method: 'GET'},
+  {route: /^\/api\/auth$/, method: 'GET'},
   // Get recipes
-  {route: '/api/recipe', method: 'GET'},
-  // Get all users
-  {route: '/api/user/all', method: 'GET'}
+  {route: /^\/api\/recipe\/.*$/, method: 'GET'},
+  {route: /^\/api\/recipe$/, method: 'GET'},
+  //Get all users SHOULD BE REMOVED
+  {route: /^\/api\/recipe$/, method: 'GET'},
 ];
 
 /**
@@ -29,8 +31,15 @@ function loggedOutAccess(route, method) {
   * Fancy way of "filtering" out a sought for object by its properties,
   * and if such a object exists, it will not be 'undefined'
   * and the function returns true
-  */
-  return unauthorizedAccessPaths.find(ele => (ele.route === route && ele.method === method)) !== undefined;
+  // */
+  // return unauthorizedAccessPaths.find(ele => (ele.route.match(route) && ele.method === method)) !== undefined;
+
+    // Unsure whether this need to be trimmed. but better to be safe than sorry
+    route = route.trim();
+    const allowed = unauthorizedAccessPaths.find((ele) => {
+      return route.match(ele.route) && method === ele.method;
+    }) !== undefined;
+    return allowed;
 }
 
 /**
@@ -66,11 +75,11 @@ router.all(/.*/, async (req, res, next) => {
   // if (process.env.NODE_ENV !== 'production') {
   //   next();
   // }
-
   if (loggedOutAccess(route, method)) {
+    console.log(route)
+    console.log(method)
     return next();
   }
-
   let token = req.headers.authorization;
   if (!token)
     return res.status(400).json({message: 'ERROR.TOKEN.NOT_SUPPLIED'});
@@ -79,8 +88,9 @@ router.all(/.*/, async (req, res, next) => {
   token = token.replace('Bearer ', '');
 
   const authAudit = await authenticateToken(token);
-  if (!authAudit.success)
+  if (!authAudit.success){
     return res.status(401).json({message: authAudit.message});
+  }
 
     try {
       const { username } = await decodeUsername(token);
@@ -121,16 +131,11 @@ router.all(/.*/, async (req, res, next) => {
 // }
 
 /**
- * Specifies which actions may be taken only
+ * Specifies which actions may be taken only by oneself
  */
 const SELF_ACTIONS = [
-  {route: /^\/api\/application$/, method: 'POST'},
-  // Means '/api/application/12331-12312 (ending in only numbers and dashes)
-  {route: /^\/api\/application$/, method: 'DELETE'},
-  {route: /^\/api\/application$/, method: 'PATCH'},
-  {route: /^\/api\/skills$/, method: 'GET'},
-  {route: /^\/api\/application$/, method: 'GET'},
-  {route: /^\/api\/user$/, method: 'GET'}
+  {route: /^\/api\/recipe$/, method: 'POST'},
+  // Means '/api/recipe/12331-12312 (ending in only numbers and dashes)
 ]
 
 /**

@@ -1,7 +1,6 @@
 import {ActionReducerMap, MetaReducer} from '@ngrx/store';
 import * as RecipeStateActions from './../actions/recipe.actions';
 import { environment } from '../../../environments/environment';
-import { recipeState } from './../../models/recipeState.model';
 
 // tslint:disable-next-line: no-empty-interface
 export interface State {}

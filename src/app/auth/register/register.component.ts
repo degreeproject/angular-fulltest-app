@@ -36,6 +36,11 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
   }
+  testknapp() {
+    console.log(this.profileForm.value);
+    this.profileForm.addControl('dingdong', new FormControl('plingPlong'));
+    console.log(this.profileForm.value);
+  }
   onSubmit() {
     console.warn(this.profileForm.value);
     if (this.profileForm.get('password').value !== this.profileForm.get('password2').value) {
@@ -47,6 +52,8 @@ export class RegisterComponent implements OnInit {
     this.authService.registerUser(
       this.profileForm.value).subscribe(res => {
         console.log(res);
+
+        console.log(this.profileForm.value);
         this.router.navigate(['/login']);
       });
   }
