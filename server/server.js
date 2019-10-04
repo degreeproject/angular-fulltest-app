@@ -7,10 +7,14 @@ const bodyParser = require('body-parser');
 const user = require('./router/api/user');
 const recipe = require('./router/api/recipe');
 const auth = require('./router/api/auth');
+const guard = require('./helpers/guard');
 
 const app = express();
 
+
 app.use(bodyParser.json());
+/* Authenticates each */
+app.use(/\/api\/.{1,}/, guard);
 
 app.use('/api/user', user);
 app.use('/api/recipe', recipe);

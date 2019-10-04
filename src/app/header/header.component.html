@@ -3,7 +3,7 @@
     <button mat-button [matMenuTriggerFor]="menu">Recipes</button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item routerLink="/recipe" routerLinkActive="active">Recipe 1</button>
-        <button mat-menu-item routerLink="/recipe" routerLinkActive="active">Recipe 2</button>
+        <button mat-menu-item routerLink="/recipes" routerLinkActive="active">Recipe collection</button>
       </mat-menu>
     <button mat-button	routerLink="/calendar" routerLinkActive="active">Calendar</button>
     <button mat-button [matMenuTriggerFor]="menu2" *ngIf="!isLoggedIn()">User</button>

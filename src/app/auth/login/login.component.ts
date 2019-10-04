@@ -23,8 +23,9 @@ export class LoginComponent implements OnInit {
   hide = true;
   failedLogin = false;
 
-  setUserState(username: string, token: string, loggedIn: boolean) {
-    this.store.dispatch(new authActions.SetState({username, token, loggedIn}));
+  // tslint:disable-next-line: variable-name
+  setUserState(username: string, access_token: string, loggedIn: boolean) {
+    this.store.dispatch(new authActions.SetState({username, token_type: 'Bearer', access_token, loggedIn}));
   }
 
   ngOnInit() {
@@ -36,7 +37,13 @@ export class LoginComponent implements OnInit {
         console.log(res.message);
         console.log(res);
         this.failedLogin = false;
-        localStorage.setItem('access_token', 'logged4'/* res.access_token */);
+        localStorage.setItem('user', JSON.stringify(
+          {token: {
+            type: res.token_type,
+            access_token: res.access_token
+          },
+          username: res.name
+        }));
         this.router.navigate(['/home']);
       },
       error => {

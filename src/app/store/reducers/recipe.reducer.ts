@@ -1,17 +1,17 @@
 import {ActionReducerMap, MetaReducer} from '@ngrx/store';
-import * as UserStateActions from './../actions/auth.actions';
+import * as RecipeStateActions from './../actions/recipe.actions';
 import { environment } from '../../../environments/environment';
-import { userState } from './../../models/userState.model';
+import { recipeState } from './../../models/recipeState.model';
 
 // tslint:disable-next-line: no-empty-interface
 export interface State {}
 
-export function authReducer(state: userState[] = [], action: UserStateActions.Actions) {
+export function recipeReducer(state: any[] = [], action: RecipeStateActions.Actions) {
   switch (action.type) {
-    case UserStateActions.SET_STATE:
+    case RecipeStateActions.ADD_RECIPE:
       return [...state, action.payload];
 
-    case UserStateActions.REMOVE_STATE:
+    case RecipeStateActions.REMOVE_RECIPE:
       const index = action.payload;
       return [...state.slice(0, index), ...state.slice(index + 1)];
 

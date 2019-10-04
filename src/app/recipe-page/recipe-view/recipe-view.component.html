@@ -5,7 +5,7 @@
     <img class="foodpic" src="{{ recipes[currentRecipe].image }}" alt="Picture of food"><br>
       <span>ingredients:</span>
       <ul>
-          <li *ngFor="let ingredient of recipes[currentRecipe].ingredient">
+          <li  *ngFor="let ingredient of recipes[currentRecipe].ingredient">
               {{ ingredient.name }}<span *ngIf=ingredient.amount>: {{ ingredient.amount }} </span><span *ngIf=ingredient.unit>{{ ingredient.unit }}</span>
           </li>
       </ul>
@@ -16,3 +16,4 @@
         </li>
       </ol>
   </div>
+  <button (click)="showState()">test</button>

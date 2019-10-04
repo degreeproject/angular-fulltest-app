@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CustomMaterialModule } from './material.module';
 
@@ -19,7 +19,12 @@ import { CommentComponent } from './recipe-page/comment/comment.component';
 import { CalendarPageComponent } from './calendar-page/calendar-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { StoreModule } from '@ngrx/store';
-import { reducer } from './store/reducers/auth.reducers';
+import { authReducer } from './store/reducers/auth.reducers';
+import { recipeReducer } from './store/reducers/recipe.reducer';
+import { AuthGuard } from './auth/auth.guard';
+import { AuthInterceptor } from './auth/auth.interceptor';
+import { RecipeCollectionPageComponent } from './recipe-collection-page/recipe-collection-page.component';
+import { RecipeItemComponent } from './recipe-collection-page/recipe-item/recipe-item.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +38,9 @@ import { reducer } from './store/reducers/auth.reducers';
     RecipeViewComponent,
     CommentComponent,
     CalendarPageComponent,
-    HomePageComponent
+    HomePageComponent,
+    RecipeCollectionPageComponent,
+    RecipeItemComponent
   ],
   imports: [
     BrowserModule,
@@ -44,10 +51,16 @@ import { reducer } from './store/reducers/auth.reducers';
     ReactiveFormsModule,
     CustomMaterialModule,
     StoreModule.forRoot({
-      userState: reducer
+      userState: authReducer,
+      recipeState: recipeReducer
     })
   ],
-  providers: [],
+providers: [AuthGuard,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

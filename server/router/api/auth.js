@@ -3,7 +3,9 @@ const jwt = require('jsonwebtoken');
 const config = require('../../config');
 const router = express.Router();
 const userService = require('../../integration/user-services');
-const { validationResult } = require('express-validator');
+const {
+    validationResult
+} = require('express-validator');
 
 
 router.get('/', async (req, res) => {
@@ -40,7 +42,7 @@ router.get('/', async (req, res) => {
             message: "Successful login",
             access_token: token,
             token_type: 'Bearer',
-            name: this.username,
+            name: username,
         });
     } catch (err) {
         if (!(err instanceof Error)) {

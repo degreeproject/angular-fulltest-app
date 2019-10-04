@@ -1,0 +1,4 @@
+<p>recipe-collection-page works!</p>
+<div id="recipediv" *ngFor="let recipe of recipes">
+  <app-recipe-item [routerLink]="['/recipe']" [recipe]="recipe"></app-recipe-item>
+</div>

@@ -8,11 +8,14 @@ import { RecipePageComponent } from './recipe-page/recipe-page.component';
 import { CalendarPageComponent } from './calendar-page/calendar-page.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { AuthGuard } from './auth/auth.guard';
+import { RecipeCollectionPageComponent } from './recipe-collection-page/recipe-collection-page.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomePageComponent },
   { path: 'recipe', component: RecipePageComponent },
-  { path: 'calendar', component: CalendarPageComponent},
+  { path: 'recipes', component: RecipeCollectionPageComponent },
+  { path: 'calendar', component: CalendarPageComponent, canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent},
   { path: '',   redirectTo: '/home', pathMatch: 'full' },

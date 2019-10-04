@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -9,7 +9,14 @@ export class RecipePageService {
 
   constructor(private http: HttpClient) { }
 
+  reqHeader = new HttpHeaders({'No-Auth': 'true'});
+
   getRecipes(): Observable<any[]> {
-    return this.http.get<any[]>('api/recipe');
+    return this.http.get<any[]>('api/recipe'/* , {headers: this.reqHeader} */);
+  }
+
+  postRecipe(recipe: any): Observable<any> {
+    console.log(recipe);
+    return this.http.post<any>('api/recipe', recipe);
   }
 }
