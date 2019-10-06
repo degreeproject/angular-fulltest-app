@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from './../store/app.states';
 import { Observable } from 'rxjs';
-import { userState } from './../models/userState.model';
+import { UserState } from './../models/userState.model';
 import { Router } from '@angular/router';
 import * as authActions from './../store/actions/auth.actions';
 
@@ -13,9 +13,9 @@ import * as authActions from './../store/actions/auth.actions';
 })
 export class HeaderComponent implements OnInit {
 
-  userState: Observable<userState>;
+  userState: Observable<UserState>;
 
-  stateUser: userState;
+  stateUser: UserState;
 
   constructor(private store: Store<AppState>, private router: Router) {
     store.select('userState').subscribe(data => {

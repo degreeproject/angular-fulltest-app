@@ -49,7 +49,6 @@ export class RecipeViewComponent implements OnInit {
     },
     error => {
       console.log('You dont have access');
-    }
-    );
+    });
   }
 }

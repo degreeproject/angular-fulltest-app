@@ -3,14 +3,14 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate, Rout
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/app.states';
-import { userState } from '../models/userState.model';
+import { UserState } from '../models/userState.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
 
-  stateUser: userState;
+  stateUser: UserState;
 
   constructor(private store: Store<AppState>, private router: Router) {
     store.select('userState').subscribe(data => {

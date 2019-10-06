@@ -1,4 +1,5 @@
-<h2>Recipes</h2>
+<h2>Recipes <button mat-mini-fab color="primary" *ngIf="isLoggedIn()" [routerLink]="['/new-recipe']">+</button></h2>
+
 <div id="recipediv" *ngFor="let recipe of recipes">
   <app-recipe-item [routerLink]="['/recipes', recipe.id]" [recipe]="recipe"></app-recipe-item>
 </div>

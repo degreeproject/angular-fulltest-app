@@ -4,7 +4,7 @@ import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from './../../store/app.states';
-import { userState } from './../../models/userState.model';
+import { UserState } from './../../models/userState.model';
 import * as authActions from './../../store/actions/auth.actions';
 import { Observable } from 'rxjs';
 

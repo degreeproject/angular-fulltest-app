@@ -1,12 +1,12 @@
 import {ActionReducerMap, MetaReducer} from '@ngrx/store';
 import * as UserStateActions from './../actions/auth.actions';
 import { environment } from '../../../environments/environment';
-import { userState } from './../../models/userState.model';
+import { UserState } from './../../models/userState.model';
 
 // tslint:disable-next-line: no-empty-interface
 export interface State {}
 
-export function authReducer(state: userState[] = [], action: UserStateActions.Actions) {
+export function authReducer(state: UserState[] = [], action: UserStateActions.Actions) {
   switch (action.type) {
     case UserStateActions.SET_STATE:
       return [...state, action.payload];

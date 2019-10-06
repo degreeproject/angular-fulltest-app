@@ -23,4 +23,8 @@ export class RecipePageService {
     console.log(recipe);
     return this.http.post<any>('api/recipe', recipe);
   }
+  postRecipeComment(comment: any): Observable<any> {
+    console.log(comment);
+    return this.http.post<any>('api/recipe/comment', comment);
+  }
 }

@@ -1,14 +1,4 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <app-header></app-header>
 <mat-card>
   <router-outlet></router-outlet>
 </mat-card>
-
-
-<ul>
-  <li *ngFor="let user of users">
-      {{ user.firstname }}
-  </li>
-</ul>
-<button mat-raised-button color="primary" (click)="showState()">db user check</button>
-

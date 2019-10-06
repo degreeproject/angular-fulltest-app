@@ -1,0 +1,17 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+.marginRight10 {
+  margin-right: 10px;
+}
+.deletestep {
+  display: flex;
+  flex-direction: column;
+  width: 20px;
+}
+.stepclass {
+  width: 60%;
+  margin-right: 10px;
+}

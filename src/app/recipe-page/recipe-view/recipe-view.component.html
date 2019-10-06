@@ -3,17 +3,16 @@
     <h1>{{ recipe.name }}</h1>
     <h3>{{ recipe.description }}</h3>
     <img class="foodpic" src="{{ recipe.image }}" alt="Picture of food"><br>
-      <span>ingredients:</span>
+      <h4>ingredients:</h4>
       <ul>
           <li  *ngFor="let ingredient of recipe.ingredient">
               {{ ingredient.name }}<span *ngIf=ingredient.amount>: {{ ingredient.amount }} </span><span *ngIf=ingredient.unit>{{ ingredient.unit }}</span>
           </li>
       </ul>
-      <span>Steps:</span>
+      <h4>Steps:</h4>
       <ol>
         <li *ngFor="let step of recipe.step">
           {{ step.description }}
         </li>
       </ol>
   </div>
-  <button (click)="showState()">test</button>

@@ -1,7 +1,7 @@
-import { userState } from './../models/userState.model';
+import { UserState } from './../models/userState.model';
 
 
 export interface AppState {
-  readonly userState: userState;
+  readonly userState: UserState;
   readonly recipeState: any;
 }

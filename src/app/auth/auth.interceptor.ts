@@ -3,14 +3,14 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/internal/operators';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { userState } from '../models/userState.model';
+import { UserState } from '../models/userState.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/app.states';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  stateUser: userState;
+  stateUser: UserState;
 
   constructor(private router: Router, private store: Store<AppState>) {
     store.select('userState').subscribe(data => {
