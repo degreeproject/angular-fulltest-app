@@ -48,12 +48,12 @@ export class CommentComponent implements OnInit {
     }
   }
   submitForm(value) {
-    console.log(value);
-    console.log(this.stateUser);
     const comment = {
       commentator: this.stateUser[0].username,
-      comment: value.comment
+      comment: value.comment,
+      recipe: this.recipe.name
     };
+    console.log('DET HÄR ÄR COMMENT' + comment.comment);
     this.recipeService.postRecipeComment(comment).subscribe(res => {
       console.log(res);
     },

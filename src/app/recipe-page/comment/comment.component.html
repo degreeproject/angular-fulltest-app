@@ -1,7 +1,7 @@
 <h4>Recipe Comments</h4>
 <form #form="ngForm" *ngIf="isLoggedIn()" (ngSubmit)="submitForm(form.value)" class="comment-form">
     <mat-form-field class="comment-width">
-      <textarea matInput name="comment" placeholder="Leave a comment" ngModel></textarea>
+      <textarea matInput name="comment" placeholder="Leave a comment" ngModel required></textarea>
     </mat-form-field>
     <button mat-raised-button color="primary" type="submit">Submit</button>
   </form>

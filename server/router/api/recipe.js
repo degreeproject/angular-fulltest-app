@@ -39,5 +39,16 @@ router.post('/', async (req, res) =>{
   }
 })
 
+router.post('/comment', async (req, res) =>{
+  try{
+    await recipeService.submitComment(req.body)
+    return res.status(201).json({
+      message: 'Comment successfully created!'
+    });
+  }catch(err){
+    console.log(err)
+  }
+})
+
 
 module.exports = router;

@@ -1,14 +1,14 @@
 <h2>Add recipe Form</h2>
-<form #form="ngForm" (ngSubmit)="submitForm(form.value)">
+<form #form="ngForm" #formcontrol="ngForm" (ngSubmit)="submitForm(form.value)">
     <div class="form-container">
     <mat-form-field>
-      <input matInput name="recipename" placeholder="Recipe Name" ngModel>
+      <input matInput name="recipename" placeholder="Recipe Name" ngModel required>
     </mat-form-field>
     <mat-form-field>
-        <input matInput name="description" placeholder="description" ngModel>
+        <input matInput name="description" placeholder="description" ngModel required>
     </mat-form-field>
     <mat-form-field>
-        <input matInput name="image" placeholder="image url" ngModel>
+        <input matInput name="image" placeholder="image url" ngModel required>
     </mat-form-field>
     </div>
 
@@ -16,13 +16,13 @@
       <h3>Ingredients:</h3>
       <div *ngFor="let obj of ingredientArray; let i=index">
           <mat-form-field class="marginRight10">
-              <input matInput name="amount{{i}}" placeholder="Ingredient Name" [(ngModel)]="obj.amount">
+              <input matInput name="name{{i}}" placeholder="Ingredient Name" [(ngModel)]="obj.name" required>
           </mat-form-field>
           <mat-form-field class="marginRight10">
-              <input matInput name="unit{{i}}" placeholder="Amount" [(ngModel)]="obj.unit">
+              <input matInput name="amount{{i}}" placeholder="Amount" [(ngModel)]="obj.anount" required>
           </mat-form-field>
           <mat-form-field class="marginRight10">
-              <input matInput name="name{{i}}" placeholder="Unit" [(ngModel)]="obj.name">
+              <input matInput name="unit{{i}}" placeholder="Unit" [(ngModel)]="obj.unit">
           </mat-form-field>
           <button mat-raised-button color="warn" *ngIf="i != 0" type="button" (click)="removeIngredient(i)">X</button>
       </div>
@@ -31,10 +31,15 @@
     <h3>steps:</h3>
     <div class="form-containerr" *ngFor="let obj of stepArray; let i=index">
       <mat-form-field class="stepclass">
-        <input matInput name="step{{i}}" placeholder="Step" [(ngModel)]="obj.description">
+        <input matInput name="step{{i}}" placeholder="Step" [(ngModel)]="obj.description" required>
       </mat-form-field>
       <button mat-raised-button color="warn" *ngIf="i != 0" type="button" (click)="removeStep(i)">X</button>
     </div>
     <button mat-raised-button class="marginRight10" color="accent" type="button" (click)="addStep()">Add Steps</button>
-    <button mat-raised-button color="primary" type="submit">Submit</button>
+    <div class="form-container">
+      <mat-form-field>
+        <input matInput name="notes" placeholder="notes" ngModel required>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" [disabled]="!formcontrol.form.valid" type="submit">Submit</button>
   </form>

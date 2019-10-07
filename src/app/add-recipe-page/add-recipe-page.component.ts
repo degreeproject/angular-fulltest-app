@@ -4,6 +4,7 @@ import { RecipeModel } from './../models/recipe.model';
 import { IngredientModel } from '../models/ingredient.model';
 import { StepModel } from '../models/step.model';
 import { RecipePageService } from '../recipe-page/recipe-page.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-recipe-page',
@@ -18,7 +19,7 @@ export class AddRecipePageComponent implements OnInit {
   ingredientArray = [];
   stepArray = [];
 
-    constructor(private recipeService: RecipePageService) {}
+    constructor(private recipeService: RecipePageService, private router: Router) {}
 
    ngOnInit() {
      this.ingredientArray.push(this.ingredient);
@@ -30,14 +31,14 @@ export class AddRecipePageComponent implements OnInit {
      this.ingredientArray.push(this.ingredient);
    }
    removeIngredient(index: number) {
-    this.ingredientArray.splice(index);
+    this.ingredientArray = this.ingredientArray.filter((value, i) => index !== i);
    }
    addStep() {
      this.step = new StepModel();
      this.stepArray.push(this.step);
    }
    removeStep(index: number) {
-     this.stepArray.splice(index);
+     this.stepArray = this.stepArray.filter((value, i) => index !== i);
    }
 
   submitForm(value: any) {
@@ -50,7 +51,8 @@ export class AddRecipePageComponent implements OnInit {
       description: value.description,
       image: value.image,
       ingredient: this.ingredientArray,
-      step: this.stepArray
+      step: this.stepArray,
+      notes: value.notes
     };
     const recipe2 = JSON.stringify(recipe);
     console.log(recipe);
@@ -58,6 +60,7 @@ export class AddRecipePageComponent implements OnInit {
     console.log(JSON.parse(recipe2));
     this.recipeService.postRecipe(recipe).subscribe(res => {
       console.log(res);
+      this.router.navigate(['/login']);
     },
     error => {
       console.log('error:' + error);

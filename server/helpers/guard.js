@@ -133,6 +133,7 @@ router.all(/.*/, async (req, res, next) => {
  */
 const SELF_ACTIONS = [
   {route: /^\/api\/recipe$/, method: 'POST'},
+  {route: /^\/api\/recipe\/comment/, method: 'POST'},
   // Means '/api/recipe/12331-12312 (ending in only numbers and dashes)
 ]
 
