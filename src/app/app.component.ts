@@ -19,12 +19,12 @@ export class AppComponent implements OnInit {
       this.stateUser = data;
     });
     store.select('recipeState').subscribe(recipe => {
-      this.bajs = recipe[0];
+      this.stateRecipe = recipe[0];
     });
 
   }
 
- bajs: any;
+  stateRecipe: any;
   stateUser: UserState;
   users: any = [];
   recipes: any = [];
@@ -34,7 +34,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.already();
-    this.getUsers();
     this.getRecipes();
   }
 
@@ -52,32 +51,19 @@ export class AppComponent implements OnInit {
   already() {
     if (localStorage.getItem('user')) {
       this.getLocalStorage();
-      console.log(this.userStorage);
       this.setUserState(this.userStorage.username, this.userStorage.token.access_token, true);
       return;
     } else {
-      console.log('No local storage');
       return;
     }
   }
 
-  getUsers(): void {
-    this.appService.getUsers().subscribe(users => (this.users = users));
-  }
   getRecipes(): void {
     this.recipeService.getRecipes().subscribe(recipes => {
       this.recipes = recipes;
-      console.log(recipes);
       this.addRecipeToState(recipes);
 
 
     });
-  }
-  showState() {
-    console.log(this.bajs);
-
-  }
-  logUsers() {
-    console.log(this.users);
   }
 }

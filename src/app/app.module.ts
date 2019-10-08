@@ -16,7 +16,6 @@ import { RegisterComponent } from './auth/register/register.component';
 import { RecipePageComponent } from './recipe-page/recipe-page.component';
 import { RecipeViewComponent } from './recipe-page/recipe-view/recipe-view.component';
 import { CommentComponent } from './recipe-page/comment/comment.component';
-import { CalendarPageComponent } from './calendar-page/calendar-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { StoreModule } from '@ngrx/store';
 import { authReducer } from './store/reducers/auth.reducers';
@@ -38,7 +37,6 @@ import { AddRecipePageComponent } from './add-recipe-page/add-recipe-page.compon
     RecipePageComponent,
     RecipeViewComponent,
     CommentComponent,
-    CalendarPageComponent,
     HomePageComponent,
     RecipeCollectionPageComponent,
     RecipeItemComponent,

@@ -32,8 +32,6 @@ export class LoginComponent implements OnInit {
     this.authService.loginUser(
       this.profileForm.value).subscribe(res => {
         this.setUserState(this.profileForm.get('username').value, res.access_token, true);
-        console.log(res.message);
-        console.log(res);
         this.failedLogin = false;
         localStorage.setItem('user', JSON.stringify(
           {token: {
@@ -45,8 +43,6 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/home']);
       },
       error => {
-        console.log(error);
-        console.log(error.error.message);
         if (error.error.message === 'Wrong credentials') {
           this.failedLogin = true;
         }

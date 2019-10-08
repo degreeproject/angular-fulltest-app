@@ -31,12 +31,6 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  checkState() {
-    console.log(this.stateUser);
-/*     const t = JSON.parse(localStorage.getItem('user'));
-    console.log(t.username); */
-    console.log(typeof(localStorage.getItem('user')));
-  }
   logout() {
     this.removeUserState();
     localStorage.clear();

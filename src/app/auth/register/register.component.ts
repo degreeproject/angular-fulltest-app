@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) { }
+
   profileForm = new FormGroup({
     username: new FormControl('', Validators.required),
     firstname: new FormControl('', Validators.required),
@@ -19,10 +20,10 @@ export class RegisterComponent implements OnInit {
     password: new FormControl('', [Validators.required, Validators.minLength(7)]),
     password2: new FormControl('', [Validators.required, Validators.minLength(7)])
   });
+
+
   hide = true;
-
   nomatch = false;
-
 
   getErrorMessage() {
     return this.profileForm.get('email').hasError('required') ? 'You must enter a value' :
@@ -37,18 +38,13 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
   onSubmit() {
-    console.warn(this.profileForm.value);
     if (this.profileForm.get('password').value !== this.profileForm.get('password2').value) {
       this.nomatch = true;
-      console.log('no match');
       return;
     }
     this.profileForm.removeControl('password2');
     this.authService.registerUser(
       this.profileForm.value).subscribe(res => {
-        console.log(res);
-
-        console.log(this.profileForm.value);
         this.router.navigate(['/login']);
       });
   }

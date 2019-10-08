@@ -16,12 +16,10 @@ export class AuthService {
   }
 
   registerUser(user: any): Observable<any> {
-    console.log(user);
     return this.http.post<any>('api/user', user, {headers: this.reqHeader});
   }
 
   loginUser(user: any): Observable<any> {
-    console.log(user);
     return this.http.get<any>('api/auth', {params: user, headers: this.reqHeader});
   }
 }

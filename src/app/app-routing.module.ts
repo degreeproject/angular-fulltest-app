@@ -5,7 +5,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { CommonModule } from '@angular/common';
 import { HomePageComponent } from './home-page/home-page.component';
 import { RecipePageComponent } from './recipe-page/recipe-page.component';
-import { CalendarPageComponent } from './calendar-page/calendar-page.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AuthGuard } from './auth/auth.guard';
@@ -17,7 +16,6 @@ const appRoutes: Routes = [
   { path: 'recipes/:id', component: RecipePageComponent },
   { path: 'recipes', component: RecipeCollectionPageComponent },
   { path: 'new-recipe', component: AddRecipePageComponent, canActivate: [AuthGuard]},
-  { path: 'calendar', component: CalendarPageComponent, canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent},
   { path: '',   redirectTo: '/home', pathMatch: 'full' },

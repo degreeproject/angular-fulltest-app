@@ -1,7 +1,6 @@
 const express = require('express');
 const recipeService = require('../../integration/recipe-services');
 const router = express.Router();
-const config = require('../../config');
 
 /**
  * GET: a single recipe
