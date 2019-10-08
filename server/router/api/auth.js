@@ -3,9 +3,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../../config');
 const router = express.Router();
 const userService = require('../../integration/user-services');
-const {
-    validationResult
-} = require('express-validator');
+const { validationResult } = require('express-validator');
 
 
 router.get('/', async (req, res) => {

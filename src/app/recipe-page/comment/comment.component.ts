@@ -51,7 +51,7 @@ export class CommentComponent implements OnInit {
     const comment = {
       commentator: this.stateUser[0].username,
       comment: value.comment,
-      recipe: this.recipe.name
+      recipe: this.recipe.id
     };
     console.log('DET HÄR ÄR COMMENT' + comment.comment);
     this.recipeService.postRecipeComment(comment).subscribe(res => {

@@ -1,13 +1,13 @@
-<h4>Recipe Comments</h4>
+<h4 *ngIf="isLoggedIn() || recipe.comments !== undefined">Recipe Comments</h4>
 <form #form="ngForm" *ngIf="isLoggedIn()" (ngSubmit)="submitForm(form.value)" class="comment-form">
     <mat-form-field class="comment-width">
       <textarea matInput name="comment" placeholder="Leave a comment" ngModel required></textarea>
     </mat-form-field>
     <button mat-raised-button color="primary" type="submit">Submit</button>
   </form>
-
 <div *ngFor="let item of recipe.comments">
   <mat-card>
     {{ item.commentator }} <span>: </span>{{ item.comment }}
   </mat-card>
 </div>
+

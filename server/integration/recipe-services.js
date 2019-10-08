@@ -68,7 +68,7 @@ class RecipeService {
         comment: comment.comment
       };
       await recipeCollection.updateOne(
-        {name: comment.recipe},
+        {id: comment.recipe},
         {$push: { comments: newcomment}});
     } catch (err) {
       throw new Error('Database error').code(500);
