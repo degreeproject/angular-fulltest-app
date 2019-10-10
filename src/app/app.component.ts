@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from './app.service';
 import { RecipePageService } from './recipe-page/recipe-page.service';
 import { UserState } from './models/userState.model';
 import { Store } from '@ngrx/store';
@@ -14,7 +13,7 @@ import * as recipeActions from './store/actions/recipe.actions';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private appService: AppService, private recipeService: RecipePageService, private store: Store<AppState>) {
+  constructor(private recipeService: RecipePageService, private store: Store<AppState>) {
     store.select('userState').subscribe(data => {
       this.stateUser = data;
     });

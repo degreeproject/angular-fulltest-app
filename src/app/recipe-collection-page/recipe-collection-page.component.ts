@@ -46,7 +46,6 @@ export class RecipeCollectionPageComponent implements OnInit {
       this.isLoaded = true;
     },
     error => {
-      console.log('You dont have access');
     }
     );
   }

@@ -53,14 +53,14 @@ export class CommentComponent implements OnInit {
       comment: value.comment,
       recipe: this.recipe.id
     };
-    console.log('DET HÄR ÄR COMMENT' + comment.comment);
     this.recipeService.postRecipeComment(comment).subscribe(res => {
-      console.log(res);
+      this.recipe.comments = this.recipe.comments.concat({
+        commentator: this.stateUser[0].username,
+        comment: value.comment,
+      });
     },
     error => {
-      console.log('error' + error);
     });
-    console.log(comment);
   }
   getRecipe(id: string): void {
     this.recipeService.getRecipe(id).subscribe(recipes => {
@@ -68,7 +68,6 @@ export class CommentComponent implements OnInit {
       this.isLoaded = true;
     },
     error => {
-      console.log('You dont have access');
     });
   }
 }

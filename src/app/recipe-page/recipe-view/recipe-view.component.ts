@@ -23,10 +23,6 @@ export class RecipeViewComponent implements OnInit {
   currentRecipe;
   isLoaded = false;
 
-  showState() {
-    console.log(this.recipes);
-  }
-
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (this.recipes) {
@@ -48,7 +44,6 @@ export class RecipeViewComponent implements OnInit {
       this.isLoaded = true;
     },
     error => {
-      console.log('You dont have access');
     });
   }
 }

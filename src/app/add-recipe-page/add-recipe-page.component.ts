@@ -42,10 +42,6 @@ export class AddRecipePageComponent implements OnInit {
    }
 
   submitForm(value: any) {
-    console.log(value);
-    console.log(value.recipename);
-    console.log(this.ingredientArray);
-    console.log(this.stepArray);
     const recipe = {
       name: value.recipename,
       description: value.description,
@@ -55,15 +51,10 @@ export class AddRecipePageComponent implements OnInit {
       notes: value.notes
     };
     const recipe2 = JSON.stringify(recipe);
-    console.log(recipe);
-    console.log(JSON.stringify(recipe));
-    console.log(JSON.parse(recipe2));
     this.recipeService.postRecipe(recipe).subscribe(res => {
-      console.log(res);
       this.router.navigate(['/login']);
     },
     error => {
-      console.log('error:' + error);
     }
     );
   }
