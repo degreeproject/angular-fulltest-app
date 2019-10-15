@@ -1,8 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { RecipePageService } from '../recipe-page.service';
-import { ActivatedRoute } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/store/app.states';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-recipe-view',
@@ -11,39 +7,13 @@ import { AppState } from 'src/app/store/app.states';
 })
 export class RecipeViewComponent implements OnInit {
 
-  constructor(private recipeService: RecipePageService, private route: ActivatedRoute, private store: Store<AppState>) {
+  constructor() {  }
 
-    store.select('recipeState').subscribe(recipe => {
-      this.recipes = recipe[0];
-    });
-  }
-
-  recipes: any = [];
-  recipe: any = [];
-  currentRecipe;
-  isLoaded = false;
+  /**
+   * Passed variable from recipe-page component
+   */
+  @Input() recipe: any;
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (this.recipes) {
-      this.recipe = this.recipes.find((ele) => {
-        return ele.id === id;
-      });
-    }
-
-    if (typeof(this.recipes) === 'undefined') {
-      this.getRecipe(id);
-    } else {
-      this.isLoaded = true;
-    }
-  }
-
-  getRecipe(id: string): void {
-    this.recipeService.getRecipe(id).subscribe(recipes => {
-      this.recipe = recipes;
-      this.isLoaded = true;
-    },
-    error => {
-    });
   }
 }
