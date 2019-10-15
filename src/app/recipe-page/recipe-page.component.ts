@@ -25,6 +25,7 @@ export class RecipePageComponent implements OnInit {
   stateUser: UserState;
   recipes: any = [];
   recipe: any = [];
+  comments: any = [];
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
@@ -41,6 +42,7 @@ export class RecipePageComponent implements OnInit {
   getRecipe(id: string): void {
     this.recipeService.getRecipe(id).subscribe(recipes => {
       this.recipe = recipes;
+      this.comments = this.recipe.comments;
     },
     error => {
     });

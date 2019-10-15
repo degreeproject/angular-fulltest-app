@@ -14,7 +14,7 @@ export class CommentComponent implements OnInit {
 
   constructor(private recipeService: RecipePageService, private route: ActivatedRoute, private store: Store<AppState>) {
   }
-  @Input() recipe: any;
+  @Input() comments: any;
   @Input() user: UserState;
 
 
@@ -31,10 +31,10 @@ export class CommentComponent implements OnInit {
     const comment = {
       commentator: this.user[0].username,
       comment: value.comment,
-      recipe: this.recipe.id
+      recipe: this.comments.id
     };
     this.recipeService.postRecipeComment(comment).subscribe(res => {
-      this.recipe.comments = this.recipe.comments.concat({
+      this.comments = this.comments.concat({
         commentator: this.user[0].username,
         comment: value.comment,
       });
