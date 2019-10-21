@@ -6,6 +6,11 @@ import { UserState } from './../../models/userState.model';
 // tslint:disable-next-line: no-empty-interface
 export interface State {}
 
+/**
+ * Sets and remove userState in the global state
+ * @param state The default state (empty)
+ * @param action The different actions
+ */
 export function authReducer(state: UserState[] = [], action: UserStateActions.Actions) {
   switch (action.type) {
     case UserStateActions.SET_STATE:

@@ -13,7 +13,13 @@ import * as authActions from './../../store/actions/auth.actions';
 })
 export class LoginComponent implements OnInit {
 
+/**
+ * @param authService Injecting the AuthService into the constructor.
+ * @param router Injecting the ActivatedRoute into the constructor.
+ * @param store Injecting the Store with the interface AppState into the constructor.
+ */
   constructor(private authService: AuthService, private router: Router, private store: Store<AppState>) { }
+
   profileForm = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
@@ -21,6 +27,12 @@ export class LoginComponent implements OnInit {
   hide = true;
   failedLogin = false;
 
+/**
+ * Sets the userstate to logged in.
+ * @param username The username of the logged in user
+ * @param access_token The user's JWT
+ * @param loggedIn A boolean that which is true fore logged in users
+ */
   // tslint:disable-next-line: variable-name
   setUserState(username: string, access_token: string, loggedIn: boolean) {
     this.store.dispatch(new authActions.SetState({username, token_type: 'Bearer', access_token, loggedIn}));
@@ -28,6 +40,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  /**
+   * On form submition, sends the given username and password to loginUser in authService,
+   * if login is successful, send username, accesstoken given from server and a boolen true to
+   * the setUserState function and store token and user in local storage.
+   */
   onSubmit() {
     this.authService.loginUser(
       this.profileForm.value).subscribe(res => {

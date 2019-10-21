@@ -12,8 +12,13 @@ import { UserState } from '../models/userState.model';
 })
 export class RecipePageComponent implements OnInit {
 
+  /**
+   * The constructor fetch the data from the global state manager.
+   * @param recipeService Injecting the RecipePageService into the constructor.
+   * @param route Injecting the ActivatedRoute into the constructor.
+   * @param store Injecting the Store with the interface AppState into the constructor.
+   */
   constructor(private recipeService: RecipePageService, private route: ActivatedRoute, private store: Store<AppState>) {
-
     store.select('userState').subscribe(data => {
       this.stateUser = data;
     });
@@ -27,6 +32,10 @@ export class RecipePageComponent implements OnInit {
   recipe: any = [];
   comments: any = [];
 
+  /**
+   * Gets the recipe ID from the route url and then get the recipe from the variable holding the global state,
+   * else it calls the method getRecipe with the ID
+   */
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (this.recipes) {
@@ -38,7 +47,10 @@ export class RecipePageComponent implements OnInit {
       this.getRecipe(id);
     }
   }
-
+  /**
+   * Calls the recipeService to fetch the a specific recipe
+   * @param id The recipe id that should fetched
+   */
   getRecipe(id: string): void {
     this.recipeService.getRecipe(id).subscribe(recipes => {
       this.recipe = recipes;

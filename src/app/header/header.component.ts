@@ -13,16 +13,23 @@ import * as authActions from './../store/actions/auth.actions';
 })
 export class HeaderComponent implements OnInit {
 
-  userState: Observable<UserState>;
-
-  stateUser: UserState;
-
+/**
+ * @param store Injecting the Store with the interface AppState into the constructor.
+ * @param router Injecting the ActivatedRoute into the constructor.
+ */
   constructor(private store: Store<AppState>, private router: Router) {
     store.select('userState').subscribe(data => {
       this.stateUser = data;
     });
   }
 
+  userState: Observable<UserState>;
+
+  stateUser: UserState;
+
+  /**
+   * checks if the user is logged in.
+   */
   isLoggedIn() {
     if (typeof(this.stateUser[0]) === 'undefined') {
       return false;
@@ -31,16 +38,16 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  /**
+   * removing userState and localStorage and navigate to login page
+   */
   logout() {
-    this.removeUserState();
+    this.store.dispatch(new authActions.RemoveState(0));
     localStorage.clear();
     this.router.navigate(['/login']);
   }
-  removeUserState() {
-    this.store.dispatch(new authActions.RemoveState(0));
-  }
-  ngOnInit() {
 
+  ngOnInit() {
   }
 
 }

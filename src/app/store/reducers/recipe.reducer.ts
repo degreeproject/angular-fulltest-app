@@ -5,6 +5,11 @@ import { environment } from '../../../environments/environment';
 // tslint:disable-next-line: no-empty-interface
 export interface State {}
 
+/**
+ * Sets and remove recipeState in the global state
+ * @param state The default state (empty)
+ * @param action The different actions
+ */
 export function recipeReducer(state: any[] = [], action: RecipeStateActions.Actions) {
   switch (action.type) {
     case RecipeStateActions.ADD_RECIPE:
