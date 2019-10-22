@@ -42,6 +42,7 @@ export class RecipePageComponent implements OnInit {
       this.recipe = this.recipes.find((ele) => {
         return ele.id === id;
       });
+      this.comments = this.recipe.comments;
     }
     if (typeof(this.recipes) === 'undefined') {
       this.getRecipe(id);
