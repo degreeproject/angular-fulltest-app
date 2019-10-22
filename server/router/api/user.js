@@ -3,13 +3,8 @@ const userService = require('../../integration/user-services');
 const router = express.Router();
 
 /**
- * GET: all users
+ * POST: Add recipe to the database
  */
-router.get('/all', async (req, res) => {
-  const users = await userService.getUsers();
-  return res.json(users);
-});
-
 router.post('/', async (req, res) => {
   try {
     await userService.submitUser(req.body)
@@ -17,9 +12,7 @@ router.post('/', async (req, res) => {
       message: 'Account successfully created!'
     });
   } catch (err) {
-    if (err instanceof Error) {
       return res.sendStatus(500);
-    }
   }
 });
 

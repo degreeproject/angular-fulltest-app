@@ -1,9 +1,10 @@
+/* eslint-disable no-console */
 const express = require('express');
 const recipeService = require('../../integration/recipe-services');
 const router = express.Router();
 
 /**
- * GET: a single recipe
+ * GET: all recipes
  */
 router.get('/', async (req, res) => {
   try {
@@ -27,6 +28,9 @@ router.get('/:id', async (req, res) => {
     }
   });
 
+/**
+ * POST: Adds a new recipe to the database and returns success message on success.
+ */
 router.post('/', async (req, res) =>{
   try{
     await recipeService.submitRecipe(req.body)
@@ -38,6 +42,9 @@ router.post('/', async (req, res) =>{
   }
 })
 
+/**
+ * POST: Adds a new comment to the recipe with the corresponding id found in the request body.
+ */
 router.post('/comment', async (req, res) =>{
   try{
     await recipeService.submitComment(req.body)

@@ -25,7 +25,10 @@ app.use('/api/auth', auth);
 const port = process.env.PORT || 8080;
 
 
-
+/**
+ * If NODE_ENV is set to production the server will take responsibility for serving
+ * the built version of the app located in the build directory.
+ */
 if(process.env.NODE_ENV === 'production'){
   // Serve only the static files form the dist directory
   app.use(express.static(__dirname + '/../dist/angular-performance-test'));
@@ -36,5 +39,4 @@ if(process.env.NODE_ENV === 'production'){
   });
 }
 
-// Start the app by listening on the default Heroku port
 app.listen(port, () => console.log(`Server running on port ${port}`));
