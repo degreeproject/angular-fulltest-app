@@ -28,6 +28,6 @@ export class AuthService {
    * @param user login credentials for the user who tries to login
    */
   loginUser(user: any): Observable<any> {
-    return this.http.get<any>('api/auth', {params: user, headers: this.reqHeader});
+    return this.http.post<any>('api/auth', user, {headers: this.reqHeader});
   }
 }

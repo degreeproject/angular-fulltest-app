@@ -53,6 +53,7 @@ class RecipeService {
       const recipeCollection = await this.loadRecipeCollection();
       const newRecipe = {
         name: recipe.name,
+        // Problem with single word names?
         id: recipe.name.replace(/ /g, "-").toLowerCase(),
         description: recipe.description,
         image: recipe.image,

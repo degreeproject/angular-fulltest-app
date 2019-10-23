@@ -10,7 +10,7 @@ const unauthorizedAccessPaths = [
   // Registring a user
   {route: /^\/api\/user$/, method: 'POST'},
   // Authenticate a user
-  {route: /^\/api\/auth$/, method: 'GET'},
+  {route: /^\/api\/auth$/, method: 'POST'},
   // Get recipe by id
   {route: /^\/api\/recipe\/.*$/, method: 'GET'},
   // Get all recipes
@@ -97,7 +97,9 @@ router.all(/.*/, async (req, res, next) => {
  * Specifies which actions may be taken only by oneself
  */
 const SELF_ACTIONS = [
+  //Add recipe
   {route: /^\/api\/recipe$/, method: 'POST'},
+  //Add comment
   {route: /^\/api\/recipe\/comment$/, method: 'POST'},
   // Means '/api/recipe/12331-12312 (ending in only numbers and dashes)
 ]
